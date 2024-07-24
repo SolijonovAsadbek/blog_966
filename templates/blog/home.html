@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+
+{% block content %}
+    <!-- NAVBAR -->
+    {% include 'blog/navbar.html' %}
+    {% include 'blog/create.html' %}
+
+    <!-- HERO BLOG COMPONENT -->
+    <div class="d-flex gap-3 p-3 flex-wrap justify-content-center">
+        {% for blog in blogs %}
+            <div class="card border shadow" style="width: 18rem;">
+                <img src="{{ blog.image.url }}" class="card-img-top custom-img" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ blog.title | truncatechars:20 }}</h5>
+                    <p class="card-text">{{ blog.description | truncatechars:50 }}</p>
+                    <a href="{% url 'detail' blog.id %}" class="btn btn-outline-primary w-100">Batafsil</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

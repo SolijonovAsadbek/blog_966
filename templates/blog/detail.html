@@ -1,0 +1,28 @@
+{% extends '_base.html' %}
+
+{% block content %}
+    <div class="container d-flex justify-content-center">
+        <div class="card card-fluid my-3 border border-0 w-50">
+            <!-- IMAGE -->
+            <img src="{{ blog.image.url }}" class="card-img-top rounded" alt="picture">
+
+            <!-- ARTICLE -->
+            <div class="card-body">
+                <h2 class="card-title">{{ blog.title }}</h2>
+                <p class="card-text">{{ blog.description|safe }}</p>
+                <p class="card-text">
+                    <small class="text-body-secondary">{{ blog.created_at | timesince }}</small>
+                </p>
+            </div>
+
+            <!-- COME BACK TO HOME PAGE -->
+            <a href="{% url 'home-view' %}">
+                <button class="btn btn-outline-dark w-100">
+                    <i class="bi bi-arrow-bar-left"></i>
+                    Bosh sahifaga qaytish
+                </button>
+            </a>
+
+        </div>
+    </div>
+{% endblock %}
