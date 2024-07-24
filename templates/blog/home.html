@@ -4,8 +4,8 @@
     <!-- NAVBAR -->
     {% include 'blog/navbar.html' %}
     {% include 'blog/create.html' %}
-
     <!-- HERO BLOG COMPONENT -->
+    <h3 class="container mt-3" style="margin-left: 110px;"><span class="text-danger">{{ blogs.count }}</span> ta blog topildi!</h3>
     <div class="d-flex gap-3 p-3 flex-wrap justify-content-center">
         {% for blog in blogs %}
             <div class="card border shadow" style="width: 18rem;">
