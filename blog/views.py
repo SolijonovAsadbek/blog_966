@@ -36,3 +36,26 @@ def detail(request, pk):
         'form': form
     }
     return render(request, 'blog/detail.html', context)
+
+
+def update(request):
+    if request.method == 'POST':
+        pk = request.POST['id']
+        blog = Blog.objects.get(id=pk)
+        blog.title = request.POST.get('title')
+        blog.description = request.POST.get('description')
+        print(request.FILES)
+        if 'image' in request.FILES:
+            blog.image = request.FILES.get('image')
+            print(blog.image)
+
+        blog.save()
+        return redirect('detail', pk)
+
+
+def blog_delete(request):
+    if request.method == 'POST':
+        pk = request.POST.get('id')
+        blog = get_object_or_404(Blog, id=pk)
+        blog.delete()
+        return redirect('home-view')

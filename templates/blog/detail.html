@@ -1,10 +1,14 @@
 {% extends '_base.html' %}
 
 {% block content %}
+    <!-- MODALS -->
+    {% include 'blog/edit.html' %}
+    {% include 'blog/delete.html' %}
+
     <div class="container d-flex justify-content-center">
         <div class="card card-fluid my-3 border border-0 w-50">
             <!-- IMAGE -->
-            <img src="{{ blog.image.url }}" class="card-img-top rounded" alt="picture">
+            <img src="{{ blog.get_image_url }}" class="card-img-top rounded" alt="picture">
 
             <!-- ARTICLE -->
             <div class="card-body">
@@ -15,13 +19,32 @@
                 </p>
             </div>
 
-            <!-- COME BACK TO HOME PAGE -->
-            <a href="{% url 'home-view' %}">
-                <button class="btn btn-outline-dark w-100">
-                    <i class="bi bi-arrow-bar-left"></i>
-                    Bosh sahifaga qaytish
-                </button>
-            </a>
+            <div class="d-flex justify-content-between align-items-center p-3">
+                <!-- BACK TO HOME  -->
+                <a href="{% url 'home-view' %}">
+                    <button class="btn btn-outline-dark w-100">
+                        <i class="bi bi-arrow-bar-left"></i>
+                        Ortga
+                    </button>
+                </a>
+                <div>
+
+                    <!-- EDIT -->
+                    <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editModal"
+                            data-bs-id="{{ blog.id }}"
+                            data-bs-title="{{ blog.title }}"
+                            data-bs-description="{{ blog.description }}"
+                            data-bs-image="{{ blog.image.url }}">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+
+                    <!-- DELETE -->
+                    <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                            data-bs-id="{{ blog.id }}">
+                        <i class="bi bi-trash3"></i>
+                    </button>
+                </div>
+            </div>
 
         </div>
     </div>

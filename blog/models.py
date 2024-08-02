@@ -9,6 +9,17 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
+    @property
+    def get_image_url(self):
+        if not self.image:
+            url = ''
+        else:
+            url = self.image.url
+        return url
+
+    class Meta:
+        ordering = ['title']
+
 # terminal
 # python manage.py makemigrations
 # python manage.py migrate

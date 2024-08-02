@@ -1,0 +1,42 @@
+<!-- EDIT Modal -->
+<div class="modal modal-xl fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="{% url 'update-blog' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 text-warning" id="staticBackdropLabel">Postni o'zgartirish</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <input type="hidden" id="blogId" name="id">
+                    <!-- TITLE -->
+                    <div>
+                        <label for="editTitle">Sarlavha:</label>
+                        <input type="text" name="title" id="editTitle" class="form-control">
+                    </div>
+
+                    <!-- DESCRIPTION -->
+                    <div>
+                        <label for="editDescription">Tafsif:</label>
+                        <textarea name="description" id="editDescription" class="form-control" rows="7"></textarea>
+                    </div>
+
+                    <!-- EDIT IMAGE -->
+                    <div>
+                        <label for="editImage">Rasm:</label>
+                        <input type="file" name="image" id="editImage" class="form-control">
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+                    <button type="submit" class="btn btn-primary btn btn-warning">O'zgartirish</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
