@@ -1,13 +1,18 @@
 {% extends '_base.html' %}
 
 {% block content %}
+
     <!-- NAVBAR -->
     {% include 'blog/navbar.html' %}
     {% include 'blog/create.html' %}
-    <!-- HERO BLOG COMPONENT -->
-    <h3 class="container mt-3" style="margin-left: 110px;"><span class="text-danger">{{ blogs.count }}</span> ta blog topildi!</h3>
+
+    <!-- BLOG TITLE -->
+    <h3 class="container mt-3" style="margin-left: 110px;"><span class="text-danger">{{ page_obj.count }} </span> ta
+        blog topildi!</h3>
+
+    <!-- BLOG BODY -->
     <div class="d-flex gap-3 p-3 flex-wrap justify-content-center">
-        {% for blog in blogs %}
+        {% for blog in page_obj %}
             <div class="card border shadow" style="width: 18rem;">
                 <img src="{{ blog.image.url }}" class="card-img-top custom-img" alt="...">
                 <div class="card-body">
@@ -18,4 +23,10 @@
             </div>
         {% endfor %}
     </div>
+
+    <!-- PAGINATION -->
+    <div class="mt-3 d-flex justify-content-center align-items-center">
+        {% include 'blog/pagination.html' %}
+    </div>
+
 {% endblock %}

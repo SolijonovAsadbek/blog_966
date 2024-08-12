@@ -3,16 +3,26 @@
     <div class="navbar container">
         <div class="container-fluid">
             <a class="navbar-brand">Blog's</a>
-            <form class="d-flex w-50 input-group" role="search">
+
+            <!-- FORM -->
+            <form class="d-flex w-50 input-group" role="search" action="{% url 'blog-search' %}" method="POST">
+                {% csrf_token %}
+                <!-- SEARCH INPUT -->
                 <label class="input-group-text" id="basic-addon1" for="search"><i class="bi bi-search"></i></label>
-                <input class="form-control me-2" id="search" type="search" placeholder="Postlar qidirish..."
+                <input class="form-control me-2" name="search" id="search" type="search" placeholder="Postlar qidirish..."
                        aria-label="Search">
+
+                <!-- SEARCH BUTTON -->
                 <button class="btn btn-outline-success" type="submit">Qidirish</button>
             </form>
+
+            <!-- CREATE BUTTON -->
             <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">
                 <i class="bi bi-plus-circle"></i> Yaratish
             </button>
+
         </div>
+
     </div>
 </nav>

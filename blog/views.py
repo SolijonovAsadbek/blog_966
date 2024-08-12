@@ -3,13 +3,17 @@ from django.shortcuts import render, redirect, get_object_or_404
 from blog import forms
 from blog.forms import BlogForm
 from blog.models import Blog
+from django.core.paginator import Paginator
 
 
 def home_view(request):
-    blogs = Blog.objects.all()  # SELECT * FROM Blog;
+    blogs = Blog.objects.all()  # objects all of Blog
+    paginator = Paginator(blogs, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     form = BlogForm()
     context = {
-        'blogs': blogs,
+        'page_obj': page_obj,
         'form': form
     }
     return render(request, 'blog/home.html', context)
@@ -41,16 +45,18 @@ def detail(request, pk):
 def update(request):
     if request.method == 'POST':
         pk = request.POST['id']
-        blog = Blog.objects.get(id=pk)
+        blog = get_object_or_404(Blog, id=pk)
         blog.title = request.POST.get('title')
         blog.description = request.POST.get('description')
-        print(request.FILES)
+
+        # Check if a new image is uploaded
         if 'image' in request.FILES:
-            blog.image = request.FILES.get('image')
-            print(blog.image)
+            blog.image = request.FILES['image']
 
         blog.save()
-        return redirect('detail', pk)
+        return redirect('detail', pk=pk)
+    else:
+        return render(request, 'blog/edit.html')
 
 
 def blog_delete(request):
@@ -59,3 +65,14 @@ def blog_delete(request):
         blog = get_object_or_404(Blog, id=pk)
         blog.delete()
         return redirect('home-view')
+
+
+def blog_search(request):
+    if request.method == "POST":
+        q = request.POST.get('search')
+        blogs = Blog.objects.filter(title__contains=q)
+        context = {
+            'blogs': blogs,
+            'form': BlogForm()
+        }
+        return render(request, 'blog/home.html', context)

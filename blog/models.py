@@ -4,7 +4,7 @@ from django.db import models
 class Blog(models.Model):
     title = models.CharField(max_length=100, verbose_name='Sarlavha:')
     description = models.TextField(verbose_name='Tafsif:')
-    image = models.ImageField(upload_to='blog/', verbose_name='Rasm:')  # new required
+    image = models.ImageField(upload_to='blog/', verbose_name='Rasm:', blank=True, null=True)  # new required
 
     def __str__(self):
         return self.title

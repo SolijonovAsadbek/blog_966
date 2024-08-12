@@ -58,7 +58,7 @@
             let blogDescription = button.getAttribute('data-bs-description');
             let blogImage = button.getAttribute('data-bs-image');
 
-            console.log(blogId)
+            console.log(blogId);
             console.log(blogTitle);
             console.log(blogDescription);
             console.log(blogImage);
@@ -68,21 +68,13 @@
             let description = editModal.querySelector('#editDescription');
             let image = editModal.querySelector('#editImage');
 
-            id.value = blogId
+            id.value = blogId;
             title.value = blogTitle;
             description.value = blogDescription;
-            // Display the file name in the span
-            let fileName = blogImage ? blogImage.split('/').pop() : blogImage;
-
-            // Simulate a change event to show the file name
             image.value = '';
-            let dataTransfer = new DataTransfer();
-            dataTransfer.items.add(new File([], fileName));
-            image.files = dataTransfer.files;
-
         });
-
     });
+
 
     // DELETE SCRIPT
     document.addEventListener('DOMContentLoaded', function () {
