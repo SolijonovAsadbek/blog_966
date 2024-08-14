@@ -20,15 +20,29 @@
             </div>
 
             <div class="d-flex justify-content-between align-items-center p-3">
-                <!-- BACK TO HOME  -->
-                <a href="{% url 'home-view' %}">
-                    <button class="btn btn-outline-dark w-100">
-                        <i class="bi bi-arrow-bar-left"></i>
-                        Ortga
-                    </button>
-                </a>
-                <div>
 
+
+                <!-- PAGINATOR BUTTONS -->
+                <div class="d-flex justify-content-between align-items-center border-top border-bottom p-2 w-75">
+
+                    <!-- PREVIOUS -->
+                    {% if previous_article %}
+                        <a class="page-link" href="{% url 'detail' previous_article.pk %}">Avvalgi</a>
+                        <!-- BLOGS -->
+                    {% endif %}
+
+                    <!-- HOME -->
+                    <a class="page-link px-5" href="{% url 'home-view' %}">Bosh sahifa</a>
+
+                    <!-- NEXT -->
+                    {% if next_article %}
+                        <a class="page-link" href="{% url 'detail' next_article.pk %}">Keyingi</a>
+                    {% endif %}
+
+                </div>
+
+                <!-- CHANGE BUTTONS -->
+                <div>
                     <!-- EDIT -->
                     <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editModal"
                             data-bs-id="{{ blog.id }}"

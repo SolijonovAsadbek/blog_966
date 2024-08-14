@@ -34,9 +34,14 @@ def create(request):
 
 def detail(request, pk):
     blog = get_object_or_404(Blog, id=pk)
+    next_article = Blog.objects.filter(pk__gt=pk).order_by('pk').first()
+    previous_article = Blog.objects.filter(pk__lt=pk).order_by('-pk').first()
+
     form = BlogForm()
     context = {
         'blog': blog,
+        'next_article': next_article,
+        'previous_article': previous_article,
         'form': form
     }
     return render(request, 'blog/detail.html', context)
