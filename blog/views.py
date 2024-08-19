@@ -8,13 +8,14 @@ from django.core.paginator import Paginator
 
 def home_view(request):
     blogs = Blog.objects.all()  # objects all of Blog
-    paginator = Paginator(blogs, 3)
+    paginator = Paginator(blogs, 4)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     form = BlogForm()
     context = {
         'page_obj': page_obj,
-        'form': form
+        'form': form,
+        'blog_count': blogs.count(),
     }
     return render(request, 'blog/home.html', context)
 
@@ -75,9 +76,16 @@ def blog_delete(request):
 def blog_search(request):
     if request.method == "POST":
         q = request.POST.get('search')
-        blogs = Blog.objects.filter(title__contains=q)
+
+        if not q:
+            return redirect('home-view')
+
+        page_obj = Blog.objects.filter(title__icontains=q)
+
         context = {
-            'blogs': blogs,
-            'form': BlogForm()
+            'page_obj': page_obj,
+            'form': BlogForm(),
         }
         return render(request, 'blog/home.html', context)
+
+    return redirect('home-view')

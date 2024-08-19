@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    {% load static %}
     <!-- META -->
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -17,16 +18,15 @@
     <!-- BOOTSTRAP ICONS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <style>
-        .custom-img {
-            max-width: 300px;
-            max-height: 180px;
-            width: auto;
-            height: auto;
-            object-fit: cover;
-            object-position: center;
-        }
-    </style>
+    <!-- CUSTOM STYLE -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- GOOGLE FONTS SOURCE SANS 3 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Space+Grotesk:wght@300..700&display=swap"
+          rel="stylesheet">
+
 </head>
 <body>
 
