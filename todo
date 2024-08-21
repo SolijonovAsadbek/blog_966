@@ -26,3 +26,6 @@ password1: 1234
 password2: 1234
 
 8. python manage.py runserver
+
+
+ok
